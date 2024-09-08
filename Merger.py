@@ -32,6 +32,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     merging(args.cut_aupaths_dir, args.output_file)
-
+    
 
 # merging("laroi_videos_aud_cut")
