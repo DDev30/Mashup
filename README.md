@@ -1,98 +1,76 @@
-```markdown
-# Video Mashup Project
 
-This project automates the process of downloading YouTube videos, converting them to audio, cutting specific portions, merging them into one file, and sending the final output via email. It can be executed through the command line.
+---
+
+# Audio Mashup Project
+
+This application allows users to input details about video processing tasks through a web form. It orchestrates various scripts to download videos, convert them to audio, cut audio clips, merge audio, and send the final result via email.
+
+## Table of Contents
+- [Features](#features)
+- [Requirements](#requirements)
+- [Setup](#setup)
+- [Usage](#usage)
+- [How It Works](#how-it-works)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
-
-- Download N videos of a given singer from YouTube.
-- Convert downloaded videos to audio files.
-- Cut the first Y seconds from all downloaded audio files.
-- Merge all the audio clips into one output file.
-- Compress and send the final output via email using `yagmail`.
+- Download videos from specified singers.
+- Convert videos to audio format.
+- Cut audio clips to a specified duration.
+- Merge audio clips into a single output file.
+- Zip and email the final output file.
 
 ## Requirements
-
-Make sure you have the following Python packages installed:
-
-- `yt-dlp`
-- `pydub`
-- `ffmpeg` (Installed and configured in your system's PATH)
-- `zipfile`
-- `yagmail`
-
-You can install the necessary Python libraries by running:
-
+- Python 3.x
+- Flask
+- Required libraries:
+  - `requests`
+  - `pandas`
+  - `matplotlib`
+  - `sklearn`
+  
+Install the required libraries using:
 ```bash
-pip install yt-dlp pydub yagmail
+pip install flask requests pandas matplotlib scikit-learn
 ```
 
-You also need to download and configure `ffmpeg`. Follow instructions here to install it: [FFmpeg Installation Guide](https://ffmpeg.org/download.html).
+## Setup
+1. Clone or download this repository to your local machine.
+2. Navigate to the project directory:
+   ```bash
+   cd path/to/project_directory
+   ```
 
-## Email Setup with Yagmail
-
-- Yagmail simplifies sending emails with Gmail accounts. Make sure you have a Gmail account, and that "Less secure apps" are enabled (or use an App Password if you have 2-factor authentication enabled).
-- You'll also need to configure your Gmail account using `yagmail` before sending emails:
-  
-  ```bash
-  pip install keyring
-  yagmail.register('your_email@gmail.com', 'your_password')
-  ```
-
-This will store your credentials securely using the `keyring` library.
+3. Ensure all scripts (`Converterr.py`, `cutter.py`, `downloadder.py`, `Merger.py`, and `zipsend.py`) are present in the same directory.
 
 ## Usage
+1. **Run the Flask Application**: Open a terminal in the project directory and execute:
+   ```bash
+   python app.py
+   ```
 
-To run the program, use the following command from the terminal:
+2. **Open Your Web Browser**: Go to `http://127.0.0.1:5000/` to access the input form.
+![alt text](image.png)
 
-```bash
-python main.py <SingerName> <NumberOfVideos> <AudioDuration> <OutputFileName> <Email>
-```
+3. **Fill Out the Form**: Provide the following details:
+   - **Singer Name**: Name of the singer whose videos you want to process.
+   - **Number of Videos**: The number of videos to download.
+   - **Duration of Each Video**: Duration of each audio clip in seconds.
+   - **Output File Name**: The name of the merged audio output file.
+   - **Email Id**: The email address to send the zipped folder.
 
-### Example
+4. **Submit the Form**: Click the "Submit" button to start processing. The application will execute the scripts in sequence with the provided inputs.
 
-```bash
-python main.py "Sharry Maan" 20 30 output.mp3 example@gmail.com
-```
+## How It Works
+- The application collects user inputs through a web form.
+- Upon submission, it calls the `main.py` script with the input parameters.
+- `main.py` orchestrates the execution of other scripts for downloading videos, converting them to audio, cutting audio clips, merging audio, and sending the final output via email.
 
-- `SingerName`: The name of the singer (e.g., Sharry Maan).
-- `NumberOfVideos`: The number of videos to download.
-- `AudioDuration`: The duration (in seconds) to cut from the start of each audio file.
-- `OutputFileName`: The name of the final merged audio output file (e.g., `output.mp3`).
-- `Email`: The email address to send the final output.
-
-## Project Structure
-
-```bash
-├── main.py              # The main file that runs the entire pipeline
-├── downloadder.py       # Script to download videos from YouTube
-├── Converterr.py        # Script to convert videos to audio
-├── cutter.py            # Script to cut audio to specified duration
-├── Merger.py            # Script to merge audio files
-├── zipsend.py           # Script to zip files and send email using yagmail
-└── README.md            # Project documentation
-```
-
-## Steps in the Pipeline
-
-1. **Download Videos**: The program downloads `N` videos from YouTube for the given singer name.
-2. **Convert to Audio**: The downloaded videos are converted to audio files.
-3. **Cut Audios**: Each audio file is trimmed to the first `Y` seconds.
-4. **Merge Audios**: All the trimmed audios are merged into a single output file.
-5. **Send Email**: The output file is zipped and sent to the provided email address using `yagmail`.
-
-## Notes
-
-- Ensure that the `ffmpeg` binary is properly installed and added to your system path to enable audio processing.
-- The output audio files are merged into an `.mp3` file and sent as a zipped file via email using `yagmail`.
-- Error handling and validation are implemented to ensure smooth execution.
-
-## Troubleshooting
-
-- **FFmpeg Issues**: If you encounter errors related to `ffmpeg`, make sure it's installed and available in your system's `PATH`.
-- **Email Issues**: If you're facing issues with email, ensure `yagmail` is properly configured and that you're using the correct Gmail credentials.
+## Contributing
+If you'd like to contribute to this project, feel free to submit a pull request or open an issue for discussion.
 
 ## License
-
 This project is licensed under the MIT License.
-```
+
+---

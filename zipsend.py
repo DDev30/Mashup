@@ -4,7 +4,7 @@ import argparse
 
 def zip_and_email_folder(folder, recipient):
     zip_path = shutil.make_archive(folder, 'zip', folder)
-    yagmail.SMTP('dv30arya@gmail.com', 'fdib wech jves elmv').send(
+    yagmail.SMTP('aryadevansh38@gmail.com', 'rnqw rmhc qdll vivl').send(
         to=recipient,
         subject="Zipped Folder: Merged Audio Files",
         contents=f"Attached is the zipped folder {folder}.",
